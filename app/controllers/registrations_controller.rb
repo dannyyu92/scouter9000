@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def create
-    @user = User.create(user_params)
+    @user = User.create(decode(params[:user]))
     if @user.save
       render :json => {:state => {:code => 0}, :data => @user }
     else
@@ -14,5 +14,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit(:email, :password, :first_name, :last_name)
+  end
+
+  def decode(input)
+    input.gsub("%5B", "[").gsub("%5D", "]")
   end
 end
