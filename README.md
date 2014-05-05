@@ -1,22 +1,26 @@
-USING JSON REQUESTS:
+POST REQUESTS
 
-To create a user, send a POST request like so:
+Create user:
 
 https://scouter9000.herokuapp.com/users.json?user[email]=blah@example.com&user[password]=12345678&user[first_name]=danny&user[last_name]=poo
 
-To sign in, send a POST request:
+Sign In:
 
 https://scouter9000.herokuapp.com/users/sign_in?user[email]=danny@example.com&user[password]=12345678
 
 This will return an :AUTH_TOKEN
 
-To see all user's profiles:
+GET REQUESTS
+
+Get All Users' Profiles
+
 https://scouter9000.herokuapp.com/profile?user_email=[:EMAIL]&user_token=[:AUTH_TOKEN]
 
 Ex:
 https://scouter9000.herokuapp.com/profile?user_email=danny@example.com&user_token=aZS4UkXGntsqr3scL5i_
 
-To see all a specific user's profile:
+Get Specific User's Profile
+
 https://scouter9000.herokuapp.com/profile/[:ID]?user_email=[:EMAIL]&user_token=[:AUTH_TOKEN]
 
 Ex:
