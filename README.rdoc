@@ -1,28 +1,15 @@
-== README
+Create user:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+curl -H "Content-Type: application/json" -d '{"user":{"email":"danny@example.com","password":"12345678","first_name":"fanny","last_name":"Yu"}}' -X POST http://localhost:3000/users.json
 
-Things you may want to cover:
+Sign in:
 
-* Ruby version
+curl -H 'Content-Type: application/json'   -H 'Accept: application/json' -X POST http://localhost:3000/users/sign_in   -d '{"user": {"email": "danny@example.com", "password": "12345678"}}'
 
-* System dependencies
+It will return back an authenticity token, ie:s9xowPfjpzs7Yix6RdCe
 
-* Configuration
+curl -i -H "Accept: application/json" -H "Content-type: application/json"  -H "X-User-Email: danny@example.com" -H "X-User-Token: s9xowPfjpzs7Yix6RdCe" -X GET http://localhost:3000/profile
 
-* Database creation
+So this wouldn’t work:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+curl -i -H "Accept: application/json" -H "Content-type: application/json"  -H "X-User-Email: danny@example.com" -H "X-User-Token: crapinvalidtoken" -X GET http://localhost:3000/profile
